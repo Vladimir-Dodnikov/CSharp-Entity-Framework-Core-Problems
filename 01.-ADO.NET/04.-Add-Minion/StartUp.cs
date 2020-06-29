@@ -113,7 +113,7 @@ namespace _04._Add_Minion
         private static string CheckTownName(SqlConnection sqlConnection, string minionTownName, StringBuilder sb)
         {
             string getTownIdQueryText = "SELECT Id FROM Towns WHERE Name = @townName";
-            
+
             using SqlCommand getTownIdCommand = new SqlCommand(getTownIdQueryText, sqlConnection);
             getTownIdCommand.Parameters.AddWithValue("@townName", minionTownName);
 
