@@ -27,18 +27,28 @@ namespace P01_HospitalDatabase.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Patient>().Property(x => x.Email).IsUnicode(false);
+            modelBuilder.Entity<Patient>()
+                .Property(x => x.Email)
+                .IsUnicode(false);
+
             modelBuilder.Entity<PatientMedicament>(entity =>
             {
-                entity.HasKey(pk => new { pk.PatientId, pk.MedicamentId });
+                entity.HasKey(pk => new 
+                { 
+                    pk.PatientId, pk.MedicamentId 
+                });
             });
 
         }
 
         public virtual DbSet<Patient> Patients { get; set; }
+
         public virtual DbSet<Visitation> Visitations { get; set; }
+
         public virtual DbSet<Diagnose> Diagnoses { get; set; }
+
         public virtual DbSet<Medicament> Medicaments { get; set; }
+
         public virtual DbSet<PatientMedicament> PatientMedicaments { get; set; }
     }
 }
