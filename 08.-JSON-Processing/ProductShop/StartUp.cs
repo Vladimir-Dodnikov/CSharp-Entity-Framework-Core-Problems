@@ -89,10 +89,12 @@ namespace ProductShop
                 Directory.CreateDirectory(directoryPath);
             }
         }
+
         private static void InitializeMapper()
         {
             Mapper.Initialize(cfg => cfg.AddProfile<ProductShopProfile>());
         }
+
         private static void ResetDatabase(ProductShopContext db)
         {
             db.Database.EnsureDeleted();
@@ -309,7 +311,5 @@ namespace ProductShop
 
             return json;
         }
-        //Problem - 10
-
     }
 }

@@ -14,6 +14,6 @@ namespace CarDealer.Models
 
         public bool IsYoungDriver { get; set; }
 
-        public ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

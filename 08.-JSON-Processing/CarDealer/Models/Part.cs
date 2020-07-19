@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CarDealer.Models
@@ -14,9 +15,10 @@ namespace CarDealer.Models
 
         public int Quantity { get; set; }
 
+        [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
 
-        public ICollection<PartCar> PartCars { get; set; }
+        public virtual ICollection<PartCar> PartCars { get; set; }
     }
 }
