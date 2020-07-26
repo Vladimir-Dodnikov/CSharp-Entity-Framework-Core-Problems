@@ -59,9 +59,9 @@ namespace CarDealer
             //File.WriteAllText(directoryPath + "/toyota-cars.json", json);
 
             //Problem - 17
-            //EnsureDirectoryPath(directoryPath);
-            //string json = GetLocalSuppliers(db);
-            //File.WriteAllText(directoryPath + "/local-suppliers.json", json);
+            EnsureDirectoryPath(directoryPath);
+            string json = GetLocalSuppliers(db);
+            File.WriteAllText(directoryPath + "/local-suppliers.json", json);
 
             //Problem - 18
             //EnsureDirectoryPath(directoryPath);
@@ -74,9 +74,9 @@ namespace CarDealer
             //File.WriteAllText(directoryPath + "/customers-total-sales.json", json);
 
             //Problem - 20
-            EnsureDirectoryPath(directoryPath);
-            string json = GetSalesWithAppliedDiscount(db);
-            File.WriteAllText(directoryPath + "/sales-discounts.json", json);
+            //EnsureDirectoryPath(directoryPath);
+            //string json = GetSalesWithAppliedDiscount(db);
+            //File.WriteAllText(directoryPath + "/sales-discounts.json", json);
 
         }
         private static void EnsureDirectoryPath(string directoryPath)
@@ -217,14 +217,14 @@ namespace CarDealer
         public static string GetLocalSuppliers(CarDealerContext context)
         {
             var localSuppliers = context
-                .Suppliers
-                .Where(s => s.IsImporter == false)
-                .OrderBy(s => s.Name)
-                .Select(s => new
+                .Parts
+                .Where(p => p.Supplier.IsImporter == false)
+                .OrderBy(p => p.Supplier.Name)
+                .Select(p => new
                 {
-                    Id = s.Id,
-                    s.Name,
-                    PartsCount = s.Parts.Count
+                    Id = p.Id,
+                    Name = p.Supplier.Name,
+                    PartsCount = p.Supplier.Parts.Count()
                 })
                 .ToList();
 
