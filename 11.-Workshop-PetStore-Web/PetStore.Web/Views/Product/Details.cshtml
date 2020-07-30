@@ -1,0 +1,36 @@
+﻿@model PetStore.ViewModels.Product.OutputModels.ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="text-center"><h1>Details</h1></div>
+
+<div>
+    <div class="justify-content-center jumbotron-fluid"><h4>Product Details</h4></div>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form asp-action="Details" method="get" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" disabled ="disabled" value="@(Model.Name)"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductType" class="control-label">Product Type</label>
+                    <input asp-for="ProductType" class="form-control" disabled="disabled" value="@(Model.ProductType)" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label">Product Type</label>
+                    <input asp-for="Price" class="form-control" disabled="disabled" value="@(Model.Price)" />
+                </div>
+                <div class="form-group text-center">
+                    <a class="btn btn-info" asp-action="All">Back to List</a>
+                    <a class="btn btn-info" asp-action="Edit">Edit</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
