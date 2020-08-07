@@ -64,12 +64,12 @@
             //return result;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BookDto[]), new XmlRootAttribute("Books"));
 
+            StringBuilder sb = new StringBuilder();
             using (StringReader stringReader = new StringReader(xmlString))
             {
                 BookDto[] bookDtos = (BookDto[])xmlSerializer.Deserialize(stringReader);
 
                 List<Book> books = new List<Book>();
-                StringBuilder sb = new StringBuilder();
 
                 foreach (var bookDto in bookDtos)
                 {
@@ -103,12 +103,10 @@
 
                 context.Books.AddRange(books);
                 context.SaveChanges();
-
-                string result = sb.ToString().TrimEnd();
-
-                return result;
-
             }
+
+            string result = sb.ToString().TrimEnd();
+            return result;
         }
 
         public static string ImportAuthors(BookShopContext context, string jsonString)
@@ -200,7 +198,7 @@
 
             var deserializedDtos = (T[])xmlSerializer.Deserialize(new StringReader(xmlString));
 
-            return deserializedDtos; 
+            return deserializedDtos;
         }
 
     }

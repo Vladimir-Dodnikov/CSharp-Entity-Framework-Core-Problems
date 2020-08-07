@@ -12,7 +12,8 @@ namespace TeisterMask.Data.Models
         {
             this.Tasks = new HashSet<Task>();
         }
-        [Required]
+
+        [Key]
         public int Id { get; set; }
 
         [Required, MaxLength(40)]

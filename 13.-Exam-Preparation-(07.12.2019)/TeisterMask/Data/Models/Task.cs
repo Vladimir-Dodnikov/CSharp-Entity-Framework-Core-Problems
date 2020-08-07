@@ -32,7 +32,6 @@ namespace TeisterMask.Data.Models
         [Required]
         public LabelType LabelType { get; set; }
 
-
         [ForeignKey(nameof(Project))]
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }

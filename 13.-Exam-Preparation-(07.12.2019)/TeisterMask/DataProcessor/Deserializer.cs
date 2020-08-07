@@ -50,11 +50,12 @@
                     }
 
                     DateTime projectOpenDate;
-                    bool isProjectOpenDate = DateTime.TryParseExact(projectDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out projectOpenDate);
+                    bool isProjectOpenDateValid = DateTime.TryParseExact(projectDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out projectOpenDate);
 
-                    if (!isProjectOpenDate)
+                    if (!isProjectOpenDateValid)
                     {
                         sb.AppendLine(ErrorMessage);
+                        continue;
                     }
 
                     DateTime? projectDueDate;
@@ -145,10 +146,10 @@
                 context.Projects.AddRange(projects);
                 context.SaveChanges();
 
-                return sb.ToString().TrimEnd();
             }
-        }
 
+            return sb.ToString().TrimEnd();
+        }
 
         public static string ImportEmployees(TeisterMaskContext context, string jsonString)
         {
